@@ -1,5 +1,17 @@
 fleet-ops:
   extension-name: Fleet-Ops
+  order-details:
+    overview: "Visão geral"
+    actions:
+      edit-details: "Editar detalhes"
+      update-activity: "Atualizar atividade"
+      assign-driver: "Atribuir motorista"
+      unassign-driver: "Remover motorista"
+      view-label: "Ver etiqueta do pedido"
+      listen-socket: "Ouvir canal do socket"
+      view-metadata: "Ver metadados"
+      cancel-order: "Cancelar pedido"
+      delete-order: "Excluir pedido"
   admin-pages:
     map-settings:
       configure-map: "Configurar mapa"

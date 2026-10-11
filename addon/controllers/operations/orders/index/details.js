@@ -18,6 +18,7 @@ export default class OperationsOrdersIndexDetailsController extends Controller {
     @service universe;
     @service sidebar;
     @service abilities;
+    @service intl;
     @tracked routingControl;
     @tracked routingCompleted = false;
     @tracked realtimeOrderPublicId = null;
@@ -77,11 +78,18 @@ export default class OperationsOrdersIndexDetailsController extends Controller {
         return [
             {
                 route: 'operations.orders.index.details.index',
-                label: 'Overview',
+                label: this.intl.t('fleet-ops.order-details.overview'),
                 icon: 'folder-open',
             },
-            ...(isArray(registeredTabs) ? registeredTabs : []),
+            ...(isArray(registeredTabs) ? registeredTabs.map((tab) => ({ ...tab, label: this.translateLabel(tab.label ?? tab.title) })) : []),
         ];
+    }
+
+    /**
+     * Tabs registered by other extensions may carry a translation key as their label.
+     */
+    translateLabel(value) {
+        return typeof value === 'string' && this.intl.exists(value) ? this.intl.t(value) : value;
     }
 
     get actionButtons() {
@@ -89,14 +97,14 @@ export default class OperationsOrdersIndexDetailsController extends Controller {
             {
                 items: [
                     {
-                        text: 'Edit details',
+                        text: this.intl.t('fleet-ops.order-details.actions.edit-details'),
                         icon: 'pencil',
                         permission: 'fleet-ops update order',
                         disabled: this.model.status === 'canceled',
                         fn: () => this.orderActions.editOrderDetails(this.model),
                     },
                     {
-                        text: 'Update activity',
+                        text: this.intl.t('fleet-ops.order-details.actions.update-activity'),
                         icon: 'signal',
                         permission: 'fleet-ops update order',
                         disabled: this.model.status === 'canceled',
@@ -106,14 +114,14 @@ export default class OperationsOrdersIndexDetailsController extends Controller {
                             }),
                     },
                     {
-                        text: this.model.has_driver_assigned ? 'Unassign driver' : 'Assign driver',
+                        text: this.intl.t(this.model.has_driver_assigned ? 'fleet-ops.order-details.actions.unassign-driver' : 'fleet-ops.order-details.actions.assign-driver'),
                         icon: this.model.has_driver_assigned ? 'user-xmark' : 'edit',
                         permission: 'fleet-ops assign-driver-for order',
                         disabled: this.model.has_driver_assigned ? !this.model.hasActiveStatus || !this.model.driver_assigned : !this.model.hasActiveStatus,
                         fn: () => (this.model.has_driver_assigned ? this.orderActions.unassignDriver(this.model) : this.orderActions.assignDriver(this.model)),
                     },
                     {
-                        text: 'View order label',
+                        text: this.intl.t('fleet-ops.order-details.actions.view-label'),
                         icon: 'file-invoice',
                         permission: 'fleet-ops view order',
                         fn: () => this.orderActions.viewLabel(this.model),
@@ -122,12 +130,12 @@ export default class OperationsOrdersIndexDetailsController extends Controller {
                         separator: true,
                     },
                     {
-                        text: 'Listen to socket channel',
+                        text: this.intl.t('fleet-ops.order-details.actions.listen-socket'),
                         icon: 'headphones',
                         fn: () => this.hostRouter.transitionTo('console.developers.sockets.view', `order.${this.model.public_id}`),
                     },
                     {
-                        text: 'View metadata',
+                        text: this.intl.t('fleet-ops.order-details.actions.view-metadata'),
                         icon: 'table',
                         fn: () => this.orderActions.viewMetadata(this.model),
                     },
@@ -135,7 +143,7 @@ export default class OperationsOrdersIndexDetailsController extends Controller {
                         separator: true,
                     },
                     {
-                        text: 'Cancel order',
+                        text: this.intl.t('fleet-ops.order-details.actions.cancel-order'),
                         icon: 'ban',
                         class: 'text-danger',
                         permission: 'fleet-ops cancel order',
@@ -143,7 +151,7 @@ export default class OperationsOrdersIndexDetailsController extends Controller {
                         fn: () => this.orderActions.cancel(this.model),
                     },
                     {
-                        text: 'Delete order',
+                        text: this.intl.t('fleet-ops.order-details.actions.delete-order'),
                         icon: 'trash',
                         class: 'text-danger',
                         permission: 'fleet-ops delete order',
