@@ -46,7 +46,7 @@ export default class OrderDetailsRouteComponent extends Component {
                 triggerClass: 'fleetops-btn-xxs',
                 items: [
                     {
-                        text: 'Edit route',
+                        text: this.intl.t('fleet-ops.order-details.edit-route'),
                         icon: 'pencil',
                         disabled: !this.args.resource.hasActiveStatus,
                         onClick: () => {
@@ -55,7 +55,7 @@ export default class OrderDetailsRouteComponent extends Component {
                     },
                     this.isMultipleWaypointOrder
                         ? {
-                              text: 'Change destination',
+                              text: this.intl.t('fleet-ops.order-details.change-destination'),
                               icon: 'location-dot',
                               disabled: !this.args.resource.hasActiveStatus,
                               onClick: () => {
@@ -147,7 +147,7 @@ export default class OrderDetailsRouteComponent extends Component {
         const optimizationInput = buildRouteOptimizationInput(order);
 
         if (!service) {
-            this.notifications.error('No route optimization engine was selected.');
+            this.notifications.error(this.intl.t('fleet-ops.order-details.no-optimization-engine'));
             return;
         }
 
@@ -188,10 +188,10 @@ export default class OrderDetailsRouteComponent extends Component {
 
     @action changeDestination() {
         this.modalsManager.show('modals/order-change-destination', {
-            title: 'Change destination',
+            title: this.intl.t('fleet-ops.order-details.change-destination'),
             order: this.args.resource,
-            acceptButtonText: 'Change destination',
-            declineButtonText: 'Close',
+            acceptButtonText: this.intl.t('fleet-ops.order-details.change-destination'),
+            declineButtonText: this.intl.t('fleet-ops.order-details.close'),
             onChange: async () => {
                 if (typeof this.args.resource?.reload === 'function') {
                     await this.args.resource.reload();
@@ -212,11 +212,11 @@ export default class OrderDetailsRouteComponent extends Component {
 
     @action viewStopActivity(stop) {
         this.modalsManager.show('modals/stop-activity', {
-            title: 'Stop activity',
+            title: this.intl.t('fleet-ops.order-details.stop-activity'),
             stop,
             order: this.args.resource,
             hideAcceptButton: true,
-            declineButtonText: 'Close',
+            declineButtonText: this.intl.t('fleet-ops.order-details.close'),
         });
     }
 
@@ -224,14 +224,14 @@ export default class OrderDetailsRouteComponent extends Component {
         const waypoint = stop?.place ?? stop;
         const waypointId = waypoint?.waypoint_public_id ?? stop?.waypoint_public_id;
         if (!waypointId) {
-            this.notifications.warning('Labels are only available for waypoint stops.');
+            this.notifications.warning(this.intl.t('fleet-ops.order-details.waypoint-labels-only'));
             return;
         }
 
         this.modalsManager.show(`modals/order-label`, {
-            title: 'Waypoint Label',
+            title: this.intl.t('fleet-ops.order-details.waypoint-label'),
             modalClass: 'modal-xl',
-            acceptButtonText: 'Done',
+            acceptButtonText: this.intl.t('fleet-ops.order-details.done'),
             hideDeclineButton: true,
         });
 
@@ -248,7 +248,7 @@ export default class OrderDetailsRouteComponent extends Component {
             };
             fileReader.readAsDataURL(blob);
         } catch (err) {
-            this.notifications.error('Failed to load waypoint label.');
+            this.notifications.error(this.intl.t('fleet-ops.order-details.waypoint-label-failed'));
             debug('Error loading waypoint label data: ' + err.message);
         }
     }

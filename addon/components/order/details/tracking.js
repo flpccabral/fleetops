@@ -8,6 +8,11 @@ export default class OrderDetailsTrackingComponent extends Component {
     @service orderActions;
     @service fetch;
     @service notifications;
+    @service intl;
+
+    tr(key, options) {
+        return this.intl.t(`fleet-ops.order-details.tracking.${key}`, options);
+    }
 
     constructor() {
         super(...arguments);
@@ -110,19 +115,19 @@ export default class OrderDetailsTrackingComponent extends Component {
 
     get defaultLifecycleMessage() {
         if (this.statusCode === 'completed') {
-            return 'Order has been completed.';
+            return this.tr('lifecycle.completed-message');
         }
 
         if (this.statusCode === 'canceled') {
-            return 'Order has been canceled.';
+            return this.tr('lifecycle.canceled-message');
         }
 
         if (this.isDispatchedLifecycle) {
-            return 'Order has been dispatched. Estimated start is based on the assigned driver route to the first stop.';
+            return this.tr('lifecycle.dispatched-message');
         }
 
         if (this.isPreStartLifecycle) {
-            return 'Live ETA will begin once the order is started.';
+            return this.tr('lifecycle.pre-start-message');
         }
 
         return null;
@@ -131,14 +136,14 @@ export default class OrderDetailsTrackingComponent extends Component {
     get lifecycleMessageTitle() {
         switch (this.lifecycleMode) {
             case 'completed':
-                return 'Order completed';
+                return this.tr('lifecycle.completed');
             case 'canceled':
-                return 'Order canceled';
+                return this.tr('lifecycle.canceled');
             case 'dispatched':
-                return 'Order dispatched';
+                return this.tr('lifecycle.dispatched');
             case 'pre_start':
             case 'created':
-                return 'Tracking pending start';
+                return this.tr('lifecycle.pending-start');
             default:
                 return null;
         }
@@ -193,14 +198,14 @@ export default class OrderDetailsTrackingComponent extends Component {
 
     get smartAdjustedEtaUnavailableLabel() {
         if (this.driverSignal === 'Unassigned') {
-            return 'Pending driver assignment';
+            return this.tr('pending-driver-assignment');
         }
 
         if (this.driverSignal === 'Missing' || this.driverSignal === 'Stale') {
-            return 'Pending GPS fix';
+            return this.tr('pending-gps-fix');
         }
 
-        return 'Pending start';
+        return this.tr('pending-start');
     }
 
     get hasCompletionEta() {
@@ -238,15 +243,15 @@ export default class OrderDetailsTrackingComponent extends Component {
     get driverStatusLabel() {
         switch (this.driverSignal) {
             case 'Live':
-                return 'Driver live';
+                return this.tr('driver-status.live');
             case 'Stale':
-                return 'Driver stale';
+                return this.tr('driver-status.stale');
             case 'Missing':
-                return 'Driver missing GPS';
+                return this.tr('driver-status.missing');
             case 'Unassigned':
-                return 'No driver assigned';
+                return this.tr('driver-status.unassigned');
             default:
-                return 'Driver offline';
+                return this.tr('driver-status.offline');
         }
     }
 
@@ -290,7 +295,10 @@ export default class OrderDetailsTrackingComponent extends Component {
     }
 
     get confidenceLabel() {
-        return this.humanize(this.trackerData?.confidence || 'unknown');
+        const confidence = this.trackerData?.confidence || 'unknown';
+        const key = `fleet-ops.order-details.tracking.confidence-levels.${confidence}`;
+
+        return this.intl.exists(key) ? this.intl.t(key) : this.humanize(confidence);
     }
 
     get confidencePercent() {
@@ -356,10 +364,10 @@ export default class OrderDetailsTrackingComponent extends Component {
 
     get activeStopLabel() {
         if (!this.activeStopIndex || !this.totalStops) {
-            return 'NOW HEADING TO';
+            return this.tr('now-heading-to');
         }
 
-        return `NOW HEADING TO - STOP ${this.activeStopIndex} OF ${this.totalStops}`;
+        return this.tr('now-heading-to-stop', { index: this.activeStopIndex, total: this.totalStops });
     }
 
     get activeStopMarkerLabel() {
@@ -417,19 +425,19 @@ export default class OrderDetailsTrackingComponent extends Component {
 
     get reportedEtaWarning() {
         if (!this.isReportedEtaUntrusted) {
-            return 'Reported from existing route data';
+            return this.tr('reported-from-route');
         }
 
-        return this.operatorWarning ?? 'Reported ETA may not reflect the latest tracking signal.';
+        return this.operatorWarning ?? this.tr('reported-eta-untrusted');
     }
 
     get etaUnavailableLabel() {
         if (this.driverSignal === 'Unassigned') {
-            return 'Pending driver assignment';
+            return this.tr('pending-driver-assignment');
         }
 
         if (this.driverSignal === 'Missing' || this.driverSignal === 'Stale') {
-            return 'Pending GPS fix';
+            return this.tr('pending-gps-fix');
         }
 
         return '-';
@@ -438,13 +446,13 @@ export default class OrderDetailsTrackingComponent extends Component {
     get operatorWarningTitle() {
         switch (this.driverSignal) {
             case 'Unassigned':
-                return 'No driver assigned';
+                return this.tr('driver-status.unassigned');
             case 'Missing':
-                return 'Pending GPS fix';
+                return this.tr('pending-gps-fix');
             case 'Stale':
-                return 'Stale driver location';
+                return this.tr('warning-titles.stale');
             default:
-                return 'Tracking estimate warning';
+                return this.tr('warning-titles.estimate');
         }
     }
 
@@ -461,7 +469,7 @@ export default class OrderDetailsTrackingComponent extends Component {
     }
 
     get diagnosticsSummaryLabel() {
-        return this.warningsCount === 1 ? '1 warning' : `${this.warningsCount} warnings`;
+        return this.tr('warnings-count', { count: this.warningsCount });
     }
 
     get totalProgressPercentage() {
@@ -529,12 +537,12 @@ export default class OrderDetailsTrackingComponent extends Component {
         }
 
         return [
-            { label: 'Provider', value: this.humanize(trackerData.provider) },
-            { label: 'Fallback', value: trackerData.fallback_provider ? this.humanize(trackerData.fallback_provider) : 'No' },
-            { label: 'Traffic aware', value: trackerData.options?.traffic_enabled ? 'Yes' : 'No' },
-            { label: 'Confidence', value: this.confidenceLabel },
-            { label: 'Driver signal', value: this.driverSignal },
-            { label: 'Warnings', value: String((trackerData.warnings ?? []).length) },
+            { label: this.tr('diagnostics-labels.provider'), value: this.humanize(trackerData.provider) },
+            { label: this.tr('diagnostics-labels.fallback'), value: trackerData.fallback_provider ? this.humanize(trackerData.fallback_provider) : this.tr('answer-no') },
+            { label: this.tr('diagnostics-labels.traffic-aware'), value: trackerData.options?.traffic_enabled ? this.tr('answer-yes') : this.tr('answer-no') },
+            { label: this.tr('diagnostics-labels.confidence'), value: this.confidenceLabel },
+            { label: this.tr('diagnostics-labels.driver-signal'), value: this.tr(`signals.${this.driverSignal.toLowerCase()}`) },
+            { label: this.tr('diagnostics-labels.warnings'), value: String((trackerData.warnings ?? []).length) },
         ];
     }
 
@@ -550,27 +558,27 @@ export default class OrderDetailsTrackingComponent extends Component {
         }
 
         if (!this.hasAssignedDriver) {
-            return 'Assign a driver to start live tracking and improve ETA accuracy.';
+            return this.tr('operator-warnings.unassigned');
         }
 
         if (!trackerData?.driver?.location) {
-            return 'Driver location is missing, so ETA accuracy may be limited.';
+            return this.tr('operator-warnings.missing');
         }
 
         if (trackerData?.insights?.is_location_stale) {
-            return 'Driver location is stale. ETA may not reflect the latest movement.';
+            return this.tr('operator-warnings.stale');
         }
 
         if (trackerData.fallback_provider) {
-            return `Using ${this.humanize(trackerData.fallback_provider)} fallback because the preferred tracking provider was unavailable.`;
+            return this.tr('operator-warnings.fallback', { provider: this.humanize(trackerData.fallback_provider) });
         }
 
         if (trackerData.confidence && trackerData.confidence !== 'high') {
-            return `${this.humanize(trackerData.confidence)} confidence ETA. Treat the estimate as directional.`;
+            return this.tr('operator-warnings.low-confidence', { level: this.confidenceLabel });
         }
 
         if ((trackerData.warnings ?? []).some((warning) => String(warning).startsWith('provider_failed'))) {
-            return 'Tracking provider returned an error. Showing the best available estimate.';
+            return this.tr('operator-warnings.provider-error');
         }
 
         return null;
@@ -617,9 +625,9 @@ export default class OrderDetailsTrackingComponent extends Component {
 
         try {
             yield this.fetch.post(`orders/${order.id}/ping-driver`);
-            this.notifications.success('Driver app ping sent.');
+            this.notifications.success(this.tr('ping-sent'));
         } catch (err) {
-            this.notifications.error(err.message ?? 'Unable to ping driver app.');
+            this.notifications.error(err.message ?? this.tr('ping-failed'));
         }
     }
 }

@@ -4,6 +4,7 @@ import isEmptyObject from '@fleetbase/ember-core/utils/is-empty-object';
 
 export default class OrderDetailsMetadataComponent extends Component {
     @service orderActions;
+    @service intl;
 
     get emptyMetadata() {
         return isEmptyObject(this.args.resource.meta);
@@ -13,7 +14,7 @@ export default class OrderDetailsMetadataComponent extends Component {
         return [
             {
                 type: 'default',
-                text: 'Edit',
+                text: this.intl.t('common.edit'),
                 icon: 'pencil',
                 iconPrefix: 'fas',
                 permission: 'fleet-ops update order',
