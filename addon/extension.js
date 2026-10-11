@@ -120,25 +120,37 @@ export default {
 
         // Register admin sections
         menuService.registerAdminMenuPanel(
-            'Fleet-Ops Config',
+            label('fleet-ops.extension.admin.panel-title'),
             [
                 new MenuItem({
-                    title: 'Routing',
+                    id: 'routing',
+                    slug: 'routing',
+                    view: 'routing',
+                    title: label('fleet-ops.extension.admin.routing'),
                     icon: 'route',
                     component: new ExtensionComponent('@fleetbase/fleetops-engine', 'admin/routing-settings'),
                 }),
                 new MenuItem({
-                    title: 'Map',
+                    id: 'map',
+                    slug: 'map',
+                    view: 'map',
+                    title: label('fleet-ops.extension.admin.map'),
                     icon: 'map',
                     component: new ExtensionComponent('@fleetbase/fleetops-engine', 'admin/map-settings'),
                 }),
                 new MenuItem({
-                    title: 'Navigator App',
+                    id: 'navigator-app',
+                    slug: 'navigator-app',
+                    view: 'navigator-app',
+                    title: label('fleet-ops.extension.admin.navigator-app'),
                     icon: 'location-arrow',
                     component: new ExtensionComponent('@fleetbase/fleetops-engine', 'admin/navigator-app'),
                 }),
                 new MenuItem({
-                    title: 'Telematics',
+                    id: 'telematics',
+                    slug: 'telematics',
+                    view: 'telematics',
+                    title: label('fleet-ops.extension.admin.telematics'),
                     icon: 'satellite-dish',
                     component: new ExtensionComponent('@fleetbase/fleetops-engine', 'admin/telematics-settings'),
                 }),

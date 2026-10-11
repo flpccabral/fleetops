@@ -1,5 +1,59 @@
 fleet-ops:
   extension-name: Fleet-Ops
+  admin-pages:
+    map-settings:
+      configure-map: "Configurar mapa"
+      default-map-provider: "Provedor de mapa padrão"
+      select-default-map-provider: "Selecione o provedor de mapa padrão"
+      sets-the-default-map-provider-for: "Define o provedor de mapa padrão para todas as organizações, a menos que elas o substituam nas próprias configurações de mapa do Fleet-Ops."
+      google-map-id: "ID do mapa do Google"
+      required-for-google-advanced-markers-and: "Necessário para os Advanced Markers do Google e para o estilo de mapa baseado na nuvem."
+      saved: "Configurações de mapa salvas."
+    routing-settings:
+      configure-system-wide-routing-engine-defaults: "Configure aqui os padrões do mecanismo de roteamento para todo o sistema. As organizações podem, opcionalmente, substituir esses valores nas próprias configurações de roteamento."
+      tracking-defaults: "Padrões de rastreamento"
+      default-tracking-provider: "Provedor de rastreamento padrão"
+      select-default-tracking-provider: "Selecione o provedor de rastreamento padrão"
+      default-provider-for-organization-level-tracking: "Provedor padrão para a inteligência de rastreamento das organizações, a menos que uma organização o substitua."
+      default-fallback-providers: "Provedores alternativos padrão"
+      providers-used-when-the-selected-tracking: "Provedores usados quando o provedor de rastreamento selecionado não está disponível."
+      select-default-fallback-providers: "Selecione os provedores alternativos padrão"
+      advanced-settings: "Configurações avançadas"
+      traffic-aware-eta: "ETA considerando o trânsito"
+      use-traffic-aware-provider-calculations-when: "Usar cálculos do provedor que consideram o trânsito, quando houver suporte."
+      summary-cache-ttl: "TTL do cache de resumo"
+      route-cache-ttl: "TTL do cache de rotas"
+      stale-location-threshold: "Limite de localização desatualizada"
+      fallback-speed: "Velocidade alternativa"
+      calculated: "Calculado"
+      saved: "Padrões de rastreamento salvos."
+    telematics-settings:
+      configure-telematics-retention-policy-and-activity: "Configure a política de retenção de telemática e o registro de atividades para todas as organizações. As organizações podem escolher a retenção do histórico de eventos de dispositivos e de posições dentro desses limites em Fleet-Ops › Configurações › Telemática. Um máximo tem precedência sobre as preferências da organização, os padrões herdados e os pedidos para manter o histórico para sempre. Reduzir um máximo pode excluir o histórico existente na próxima limpeza."
+      system-device-events-retention-policy: "Política de retenção de eventos de dispositivos do sistema"
+      default-device-event-retention-days: "Retenção padrão de eventos de dispositivos (dias)"
+      retention-for-organizations-that-inherit-the: "Retenção para as organizações que herdam o padrão do sistema. 0 mantém o histórico para sempre, sujeito ao máximo abaixo."
+      maximum-device-event-retention-days: "Retenção máxima de eventos de dispositivos (dias)"
+      the-longest-any-organization-can-keep: "O maior período durante o qual qualquer organização pode manter eventos de dispositivos. 0 não define máximo e permite que as organizações mantenham o histórico para sempre."
+      system-position-history-retention-policy: "Política de retenção do histórico de posições do sistema"
+      default-position-history-retention-days: "Retenção padrão do histórico de posições (dias)"
+      maximum-position-history-retention-days: "Retenção máxima do histórico de posições (dias)"
+      the-longest-any-organization-can-keep-2: "O maior período durante o qual qualquer organização pode manter posições de veículos e reboques. 0 não define máximo e permite que as organizações mantenham o histórico para sempre."
+      system-device-event-raw-payload-retention: "Retenção de payloads brutos de eventos de dispositivos do sistema"
+      device-event-raw-payload-retention-days: "Retenção de payloads brutos de eventos de dispositivos (dias)"
+      remove-raw-provider-payloads-from-retained: "Remove os payloads brutos do provedor dos eventos de dispositivos retidos em todas as organizações após esse número de dias. 0 desativa a compactação. Isso não altera por quanto tempo o próprio histórico de eventos é mantido."
+      system-delivery-inbox-and-sync-run: "Política de retenção da caixa de entrada de entregas e das execuções de sincronização do sistema"
+      processed-delivery-retention-hours: "Retenção de entregas processadas (horas)"
+      delete-processed-delivery-envelopes-across-all: "Exclui os envelopes de entrega processados em todas as organizações após esse número de horas. 0 os mantém para sempre."
+      quarantined-delivery-retention-days: "Retenção de entregas em quarentena (dias)"
+      delete-quarantined-delivery-envelopes-across-all: "Exclui os envelopes de entrega em quarentena em todas as organizações após esse número de dias. 0 os mantém para sempre."
+      sync-run-diagnostics-retention-days: "Retenção dos diagnósticos de execuções de sincronização (dias)"
+      delete-finished-sync-run-diagnostics-across: "Exclui os diagnósticos de execuções de sincronização concluídas em todas as organizações após esse número de dias. 0 os mantém para sempre."
+      system-telemetry-activity-logging: "Registro de atividades de telemetria do sistema"
+      log-telemetry-activity: "Registrar atividade de telemetria"
+      write-telemetry-driven-device-event-and: "Grava no registro de atividades os salvamentos de dispositivos, eventos e veículos gerados pela telemetria, para todas as organizações. Cada consulta pode adicionar várias linhas de atividade por dispositivo."
+      storage-usage-includes-telematics-data-across: "O uso de armazenamento inclui os dados de telemática de todas as organizações. A limpeza se aplica a todo o sistema, usando a política do sistema salva e as preferências de histórico de cada organização dentro dessa política."
+      save-system-policy: "Salvar política do sistema"
+      saved: "Configurações de telemática do sistema salvas."
   extension:
     description: Despacho, gestão de frota, rastreamento de motoristas e operações logísticas.
     shortcuts:
@@ -91,6 +145,12 @@ fleet-ops:
       geofence-violations:
         name: Violações de Geocerca
         description: Permanências fora do padrão e pontos críticos de eventos de geocerca.
+    admin:
+      panel-title: Configuração do Fleet-Ops
+      routing: Roteamento
+      map: Mapa
+      navigator-app: Aplicativo Navigator
+      telematics: Telemática
 common:
   last-modified: Última modificação
   online: Online

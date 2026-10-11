@@ -48,7 +48,7 @@ export default class AdminTelematicsSettingsComponent extends Component {
         try {
             const settings = yield this.fetch.post('fleet-ops/settings/admin-telematics-settings', this.settingsPayload);
             this.applySettings(settings);
-            this.notifications.success('System telematics settings saved.');
+            this.notifications.success(this.intl.t('fleet-ops.admin-pages.telematics-settings.saved'));
         } catch (error) {
             this.notifications.serverError(error);
         }

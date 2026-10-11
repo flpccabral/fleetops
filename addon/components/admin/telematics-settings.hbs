@@ -1,55 +1,54 @@
 <div class="space-y-6">
     <InfoBlock @type="info" @icon="circle-info" class="mb-4">
-        Configure telematics retention policy and activity logging for all organizations. Organizations can choose device event and position history retention within these limits from Fleet-Ops &rsaquo; Settings &rsaquo; Telematics.
-        A maximum takes precedence over organization preferences, inherited defaults and requests to keep history forever. Reducing a maximum can delete existing history at the next cleanup.
+        {{t "fleet-ops.admin-pages.telematics-settings.configure-telematics-retention-policy-and-activity"}}
     </InfoBlock>
 
-    <ContentPanel @title="System Device Events Retention Policy" @open={{true}} @wrapperClass="bordered-classic">
+    <ContentPanel @title={{t "fleet-ops.admin-pages.telematics-settings.system-device-events-retention-policy"}} @open={{true}} @wrapperClass="bordered-classic">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputGroup @name="Default Device Event Retention (days)" @helpText="Retention for organizations that inherit the system default. 0 keeps history forever, subject to the maximum below.">
+            <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.default-device-event-retention-days"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.retention-for-organizations-that-inherit-the"}}>
                 <Input @type="number" @value={{this.eventRetentionDays}} min="0" max="3650" class="form-input w-full" />
             </InputGroup>
-            <InputGroup @name="Maximum Device Event Retention (days)" @helpText="The longest any organization can keep device events. 0 sets no maximum and allows organizations to keep history forever.">
+            <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.maximum-device-event-retention-days"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.the-longest-any-organization-can-keep"}}>
                 <Input @type="number" @value={{this.maxEventRetentionDays}} min="0" max="3650" class="form-input w-full" />
             </InputGroup>
         </div>
     </ContentPanel>
 
-    <ContentPanel @title="System Position History Retention Policy" @open={{true}} @wrapperClass="bordered-classic">
+    <ContentPanel @title={{t "fleet-ops.admin-pages.telematics-settings.system-position-history-retention-policy"}} @open={{true}} @wrapperClass="bordered-classic">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputGroup @name="Default Position History Retention (days)" @helpText="Retention for organizations that inherit the system default. 0 keeps history forever, subject to the maximum below.">
+            <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.default-position-history-retention-days"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.retention-for-organizations-that-inherit-the"}}>
                 <Input @type="number" @value={{this.positionRetentionDays}} min="0" max="3650" class="form-input w-full" />
             </InputGroup>
-            <InputGroup @name="Maximum Position History Retention (days)" @helpText="The longest any organization can keep vehicle and trailer positions. 0 sets no maximum and allows organizations to keep history forever.">
+            <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.maximum-position-history-retention-days"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.the-longest-any-organization-can-keep-2"}}>
                 <Input @type="number" @value={{this.maxPositionRetentionDays}} min="0" max="3650" class="form-input w-full" />
             </InputGroup>
         </div>
     </ContentPanel>
 
-    <ContentPanel @title="System Device Event Raw Payload Retention" @open={{true}} @wrapperClass="bordered-classic">
-        <InputGroup @name="Device Event Raw Payload Retention (days)" @helpText="Remove raw provider payloads from retained device events across all organizations after this many days. 0 disables compaction. This does not change how long the event history itself is kept.">
+    <ContentPanel @title={{t "fleet-ops.admin-pages.telematics-settings.system-device-event-raw-payload-retention"}} @open={{true}} @wrapperClass="bordered-classic">
+        <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.device-event-raw-payload-retention-days"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.remove-raw-provider-payloads-from-retained"}}>
             <Input @type="number" @value={{this.eventCompactAfterDays}} min="0" max="3650" class="form-input w-full" />
         </InputGroup>
     </ContentPanel>
 
-    <ContentPanel @title="System Delivery Inbox and Sync Run Retention Policy" @open={{true}} @wrapperClass="bordered-classic">
+    <ContentPanel @title={{t "fleet-ops.admin-pages.telematics-settings.system-delivery-inbox-and-sync-run"}} @open={{true}} @wrapperClass="bordered-classic">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <InputGroup @name="Processed Delivery Retention (hours)" @helpText="Delete processed delivery envelopes across all organizations after this many hours. 0 keeps them forever.">
+            <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.processed-delivery-retention-hours"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.delete-processed-delivery-envelopes-across-all"}}>
                 <Input @type="number" @value={{this.processedRetentionHours}} min="0" max="720" class="form-input w-full" />
             </InputGroup>
-            <InputGroup @name="Quarantined Delivery Retention (days)" @helpText="Delete quarantined delivery envelopes across all organizations after this many days. 0 keeps them forever.">
+            <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.quarantined-delivery-retention-days"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.delete-quarantined-delivery-envelopes-across-all"}}>
                 <Input @type="number" @value={{this.quarantineRetentionDays}} min="0" max="365" class="form-input w-full" />
             </InputGroup>
-            <InputGroup @name="Sync Run Diagnostics Retention (days)" @helpText="Delete finished sync run diagnostics across all organizations after this many days. 0 keeps them forever.">
+            <InputGroup @name={{t "fleet-ops.admin-pages.telematics-settings.sync-run-diagnostics-retention-days"}} @helpText={{t "fleet-ops.admin-pages.telematics-settings.delete-finished-sync-run-diagnostics-across"}}>
                 <Input @type="number" @value={{this.syncRunRetentionDays}} min="0" max="365" class="form-input w-full" />
             </InputGroup>
         </div>
     </ContentPanel>
 
-    <ContentPanel @title="System Telemetry Activity Logging" @open={{true}} @wrapperClass="bordered-classic">
+    <ContentPanel @title={{t "fleet-ops.admin-pages.telematics-settings.system-telemetry-activity-logging"}} @open={{true}} @wrapperClass="bordered-classic">
         <Toggle
-            @label="Log Telemetry Activity"
-            @helpText="Write telemetry-driven device, event and vehicle saves to the activity log for all organizations. Every poll can add several activity rows per device."
+            @label={{t "fleet-ops.admin-pages.telematics-settings.log-telemetry-activity"}}
+            @helpText={{t "fleet-ops.admin-pages.telematics-settings.write-telemetry-driven-device-event-and"}}
             @isToggled={{this.logTelemetryActivity}}
             @onToggle={{fn (mut this.logTelemetryActivity)}}
         />
@@ -60,7 +59,7 @@
             @type="primary"
             @size="sm"
             @icon="save"
-            @text="Save System Policy"
+            @text={{t "fleet-ops.admin-pages.telematics-settings.save-system-policy"}}
             @onClick={{perform this.saveSettings}}
             @disabled={{or this.saveSettings.isRunning this.loadSettings.isRunning (not this.settingsLoaded)}}
             @isLoading={{or this.saveSettings.isRunning this.loadSettings.isRunning}}
@@ -69,7 +68,7 @@
 
     <ContentPanel @title={{t "settings.telematics.storage-usage"}} @open={{true}} @wrapperClass="bordered-classic">
         <p class="mb-3 text-sm text-gray-600 dark:text-gray-300">
-            Storage usage includes telematics data across all organizations. Cleanup applies system-wide, using the saved system policy and each organization's history preferences within that policy.
+            {{t "fleet-ops.admin-pages.telematics-settings.storage-usage-includes-telematics-data-across"}}
         </p>
         <div class="flex items-center justify-end gap-2 mb-3">
             <Button

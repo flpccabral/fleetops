@@ -7,6 +7,7 @@ import { task } from 'ember-concurrency';
 export default class AdminRoutingSettingsComponent extends Component {
     @service fetch;
     @service notifications;
+    @service intl;
     @tracked trackingProvider = 'google_routes';
     @tracked trackingFallbacks = ['osrm', 'calculated'];
     @tracked trackingTrafficEnabled = true;
@@ -15,11 +16,21 @@ export default class AdminRoutingSettingsComponent extends Component {
     @tracked trackingStaleLocationThresholdSeconds = 300;
     @tracked trackingDefaultVehicleSpeedKph = 35;
     @tracked showTrackingAdvancedSettings = false;
-    @tracked trackingProviderOptions = [
+    @tracked providerOptions = [
         { value: 'google_routes', label: 'Google Routes' },
         { value: 'osrm', label: 'OSRM' },
         { value: 'calculated', label: 'Calculated' },
     ];
+
+    /**
+     * Provider names are product names and stay as-is; only the built-in
+     * "calculated" provider gets a translated label.
+     */
+    get trackingProviderOptions() {
+        return this.providerOptions.map((option) =>
+            this.optionValue(option) === 'calculated' ? { ...option, label: this.intl.t('fleet-ops.admin-pages.routing-settings.calculated') } : option
+        );
+    }
 
     constructor() {
         super(...arguments);
@@ -36,7 +47,7 @@ export default class AdminRoutingSettingsComponent extends Component {
             this.trackingRouteCacheTtlSeconds = settings.route_cache_ttl_seconds ?? 600;
             this.trackingStaleLocationThresholdSeconds = settings.stale_location_threshold_seconds ?? 300;
             this.trackingDefaultVehicleSpeedKph = settings.default_vehicle_speed_kph ?? 35;
-            this.trackingProviderOptions = this.normalizeProviderOptions(settings.providers ?? this.trackingProviderOptions);
+            this.providerOptions = this.normalizeProviderOptions(settings.providers ?? this.providerOptions);
         } catch (error) {
             this.notifications.serverError(error);
         }
@@ -45,7 +56,7 @@ export default class AdminRoutingSettingsComponent extends Component {
     @task *saveSettings() {
         try {
             yield this.fetch.post('fleet-ops/settings/admin-tracking-settings', this.trackingSettingsPayload);
-            this.notifications.success('Tracking defaults saved.');
+            this.notifications.success(this.intl.t('fleet-ops.admin-pages.routing-settings.saved'));
         } catch (error) {
             this.notifications.serverError(error);
         }

@@ -1,16 +1,16 @@
-<ContentPanel @title="Configure Map" @open={{true}} @wrapperClass="bordered-classic">
-    <InputGroup @name="Default Map Provider" @helpText="Sets the default map provider for all organizations unless they override it in their own Fleet-Ops map settings.">
+<ContentPanel @title={{t "fleet-ops.admin-pages.map-settings.configure-map"}} @open={{true}} @wrapperClass="bordered-classic">
+    <InputGroup @name={{t "fleet-ops.admin-pages.map-settings.default-map-provider"}} @helpText={{t "fleet-ops.admin-pages.map-settings.sets-the-default-map-provider-for"}}>
         <Select
             class="w-full flex-1"
             @value={{this.mapProvider}}
             @options={{this.mapProviderOptions}}
             @optionLabel="label"
             @optionValue="value"
-            @placeholder="Select default map provider"
+            @placeholder={{t "fleet-ops.admin-pages.map-settings.select-default-map-provider"}}
             @onSelect={{this.selectMapProvider}}
         />
     </InputGroup>
-    <InputGroup @name="Google Map ID" @value={{this.googleMapsMapId}} @helpText="Required for Google Advanced Markers and cloud-based map styling." />
+    <InputGroup @name={{t "fleet-ops.admin-pages.map-settings.google-map-id"}} @value={{this.googleMapsMapId}} @helpText={{t "fleet-ops.admin-pages.map-settings.required-for-google-advanced-markers-and"}} />
 </ContentPanel>
 
 <EmberWormhole @to="next-view-section-subheader-actions">
@@ -18,7 +18,7 @@
         @type="primary"
         @size="sm"
         @icon="save"
-        @text="Save Changes"
+        @text={{t "common.save-changes"}}
         @onClick={{perform this.saveSettings}}
         @isLoading={{or this.saveSettings.isRunning this.loadSettings.isRunning}}
         @disabled={{this.saveSettings.isRunning}}

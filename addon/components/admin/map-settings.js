@@ -8,6 +8,7 @@ import MAP_PROVIDER_OPTIONS from '../../utils/map-provider-options';
 export default class AdminMapSettingsComponent extends Component {
     @service fetch;
     @service notifications;
+    @service intl;
     @tracked mapProviderOptions = MAP_PROVIDER_OPTIONS;
     @tracked mapProvider = 'leaflet';
     @tracked googleMapsMapId = '';
@@ -38,7 +39,7 @@ export default class AdminMapSettingsComponent extends Component {
                 googleMapsMapId: this.googleMapsMapId,
             });
 
-            this.notifications.success('Map settings saved.');
+            this.notifications.success(this.intl.t('fleet-ops.admin-pages.map-settings.saved'));
         } catch (error) {
             this.notifications.serverError(error);
         }

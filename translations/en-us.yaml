@@ -1,5 +1,59 @@
 fleet-ops:
     extension-name: Fleet-Ops
+    admin-pages:
+        map-settings:
+            configure-map: "Configure Map"
+            default-map-provider: "Default Map Provider"
+            sets-the-default-map-provider-for: "Sets the default map provider for all organizations unless they override it in their own Fleet-Ops map settings."
+            select-default-map-provider: "Select default map provider"
+            google-map-id: "Google Map ID"
+            required-for-google-advanced-markers-and: "Required for Google Advanced Markers and cloud-based map styling."
+            saved: "Map settings saved."
+        routing-settings:
+            configure-system-wide-routing-engine-defaults: "Configure system-wide routing engine defaults here. Organizations can optionally override these values from their own routing settings."
+            tracking-defaults: "Tracking Defaults"
+            default-tracking-provider: "Default Tracking Provider"
+            default-provider-for-organization-level-tracking: "Default provider for organization-level tracking intelligence unless an organization overrides it."
+            select-default-tracking-provider: "Select default tracking provider"
+            default-fallback-providers: "Default Fallback Providers"
+            providers-used-when-the-selected-tracking: "Providers used when the selected tracking provider is unavailable."
+            select-default-fallback-providers: "Select default fallback providers"
+            advanced-settings: "Advanced Settings"
+            traffic-aware-eta: "Traffic-Aware ETA"
+            use-traffic-aware-provider-calculations-when: "Use traffic-aware provider calculations when supported."
+            summary-cache-ttl: "Summary Cache TTL"
+            route-cache-ttl: "Route Cache TTL"
+            stale-location-threshold: "Stale Location Threshold"
+            fallback-speed: "Fallback Speed"
+            calculated: "Calculated"
+            saved: "Tracking defaults saved."
+        telematics-settings:
+            configure-telematics-retention-policy-and-activity: "Configure telematics retention policy and activity logging for all organizations. Organizations can choose device event and position history retention within these limits from Fleet-Ops › Settings › Telematics. A maximum takes precedence over organization preferences, inherited defaults and requests to keep history forever. Reducing a maximum can delete existing history at the next cleanup."
+            system-device-events-retention-policy: "System Device Events Retention Policy"
+            default-device-event-retention-days: "Default Device Event Retention (days)"
+            retention-for-organizations-that-inherit-the: "Retention for organizations that inherit the system default. 0 keeps history forever, subject to the maximum below."
+            maximum-device-event-retention-days: "Maximum Device Event Retention (days)"
+            the-longest-any-organization-can-keep: "The longest any organization can keep device events. 0 sets no maximum and allows organizations to keep history forever."
+            system-position-history-retention-policy: "System Position History Retention Policy"
+            default-position-history-retention-days: "Default Position History Retention (days)"
+            maximum-position-history-retention-days: "Maximum Position History Retention (days)"
+            the-longest-any-organization-can-keep-2: "The longest any organization can keep vehicle and trailer positions. 0 sets no maximum and allows organizations to keep history forever."
+            system-device-event-raw-payload-retention: "System Device Event Raw Payload Retention"
+            device-event-raw-payload-retention-days: "Device Event Raw Payload Retention (days)"
+            remove-raw-provider-payloads-from-retained: "Remove raw provider payloads from retained device events across all organizations after this many days. 0 disables compaction. This does not change how long the event history itself is kept."
+            system-delivery-inbox-and-sync-run: "System Delivery Inbox and Sync Run Retention Policy"
+            processed-delivery-retention-hours: "Processed Delivery Retention (hours)"
+            delete-processed-delivery-envelopes-across-all: "Delete processed delivery envelopes across all organizations after this many hours. 0 keeps them forever."
+            quarantined-delivery-retention-days: "Quarantined Delivery Retention (days)"
+            delete-quarantined-delivery-envelopes-across-all: "Delete quarantined delivery envelopes across all organizations after this many days. 0 keeps them forever."
+            sync-run-diagnostics-retention-days: "Sync Run Diagnostics Retention (days)"
+            delete-finished-sync-run-diagnostics-across: "Delete finished sync run diagnostics across all organizations after this many days. 0 keeps them forever."
+            system-telemetry-activity-logging: "System Telemetry Activity Logging"
+            log-telemetry-activity: "Log Telemetry Activity"
+            write-telemetry-driven-device-event-and: "Write telemetry-driven device, event and vehicle saves to the activity log for all organizations. Every poll can add several activity rows per device."
+            save-system-policy: "Save System Policy"
+            storage-usage-includes-telematics-data-across: "Storage usage includes telematics data across all organizations. Cleanup applies system-wide, using the saved system policy and each organization's history preferences within that policy."
+            saved: "System telematics settings saved."
     extension:
         description: Dispatch, fleet management, driver tracking, and logistics operations.
         shortcuts:
@@ -91,6 +145,12 @@ fleet-ops:
             geofence-violations:
                 name: Geofence Violations
                 description: Dwell-time outliers and geofence event hotspots.
+        admin:
+            panel-title: Fleet-Ops Config
+            routing: Routing
+            map: Map
+            navigator-app: Navigator App
+            telematics: Telematics
 
 common:
     last-modified: Last modified

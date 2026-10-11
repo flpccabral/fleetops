@@ -1,21 +1,21 @@
 <div class="space-y-6">
     <InfoBlock @type="info" @icon="circle-info" class="mb-4">
-        Configure system-wide routing engine defaults here. Organizations can optionally override these values from their own routing settings.
+        {{t "fleet-ops.admin-pages.routing-settings.configure-system-wide-routing-engine-defaults"}}
     </InfoBlock>
 
-    <ContentPanel @title="Tracking Defaults" @open={{true}} @wrapperClass="bordered-classic">
-        <InputGroup @name="Default Tracking Provider" @helpText="Default provider for organization-level tracking intelligence unless an organization overrides it.">
+    <ContentPanel @title={{t "fleet-ops.admin-pages.routing-settings.tracking-defaults"}} @open={{true}} @wrapperClass="bordered-classic">
+        <InputGroup @name={{t "fleet-ops.admin-pages.routing-settings.default-tracking-provider"}} @helpText={{t "fleet-ops.admin-pages.routing-settings.default-provider-for-organization-level-tracking"}}>
             <Select
                 class="w-full"
                 @value={{this.trackingProvider}}
                 @options={{this.trackingProviderOptions}}
                 @optionLabel="label"
                 @optionValue="value"
-                @placeholder="Select default tracking provider"
+                @placeholder={{t "fleet-ops.admin-pages.routing-settings.select-default-tracking-provider"}}
                 @onSelect={{fn (mut this.trackingProvider)}}
             />
         </InputGroup>
-        <InputGroup @name="Default Fallback Providers" @helpText="Providers used when the selected tracking provider is unavailable.">
+        <InputGroup @name={{t "fleet-ops.admin-pages.routing-settings.default-fallback-providers"}} @helpText={{t "fleet-ops.admin-pages.routing-settings.providers-used-when-the-selected-tracking"}}>
             <div class="fleetbase-model-select fleetbase-power-select ember-model-select">
                 <PowerSelectMultiple
                     @searchEnabled={{true}}
@@ -23,7 +23,7 @@
                     @options={{this.trackingProviderOptions}}
                     @selected={{this.selectedTrackingFallbackOptions}}
                     @onChange={{this.setTrackingFallbacks}}
-                    @placeholder="Select default fallback providers"
+                    @placeholder={{t "fleet-ops.admin-pages.routing-settings.select-default-fallback-providers"}}
                     @triggerClass="form-select form-input form-input-sm flex-1"
                     as |provider|
                 >
@@ -36,26 +36,26 @@
                 @type="default"
                 @size="xs"
                 @icon={{if this.showTrackingAdvancedSettings "chevron-up" "chevron-down"}}
-                @text="Advanced Settings"
+                @text={{t "fleet-ops.admin-pages.routing-settings.advanced-settings"}}
                 @onClick={{this.toggleTrackingAdvancedSettings}}
             />
         </div>
         {{#if this.showTrackingAdvancedSettings}}
             <div class="mt-4 space-y-4 rounded-md border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-800">
-                <InputGroup @name="Traffic-Aware ETA" @helpText="Use traffic-aware provider calculations when supported.">
+                <InputGroup @name={{t "fleet-ops.admin-pages.routing-settings.traffic-aware-eta"}} @helpText={{t "fleet-ops.admin-pages.routing-settings.use-traffic-aware-provider-calculations-when"}}>
                     <Toggle @isToggled={{this.trackingTrafficEnabled}} @onToggle={{fn (mut this.trackingTrafficEnabled)}} />
                 </InputGroup>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <InputGroup @name="Summary Cache TTL">
+                    <InputGroup @name={{t "fleet-ops.admin-pages.routing-settings.summary-cache-ttl"}}>
                         <Input @type="number" @value={{this.trackingCacheTtlSeconds}} min="15" max="300" class="form-input w-full" />
                     </InputGroup>
-                    <InputGroup @name="Route Cache TTL">
+                    <InputGroup @name={{t "fleet-ops.admin-pages.routing-settings.route-cache-ttl"}}>
                         <Input @type="number" @value={{this.trackingRouteCacheTtlSeconds}} min="60" max="1800" class="form-input w-full" />
                     </InputGroup>
-                    <InputGroup @name="Stale Location Threshold">
+                    <InputGroup @name={{t "fleet-ops.admin-pages.routing-settings.stale-location-threshold"}}>
                         <Input @type="number" @value={{this.trackingStaleLocationThresholdSeconds}} min="30" max="3600" class="form-input w-full" />
                     </InputGroup>
-                    <InputGroup @name="Fallback Speed">
+                    <InputGroup @name={{t "fleet-ops.admin-pages.routing-settings.fallback-speed"}}>
                         <Input @type="number" @value={{this.trackingDefaultVehicleSpeedKph}} min="1" max="160" class="form-input w-full" />
                     </InputGroup>
                 </div>
@@ -75,7 +75,7 @@
         @type="primary"
         @size="sm"
         @icon="save"
-        @text="Save Changes"
+        @text={{t "common.save-changes"}}
         @onClick={{perform this.saveSettings}}
         @isLoading={{or this.saveSettings.isRunning this.loadSettings.isRunning}}
         @disabled={{this.saveSettings.isRunning}}
