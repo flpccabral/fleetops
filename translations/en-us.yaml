@@ -1,5 +1,36 @@
 fleet-ops:
     extension-name: Fleet-Ops
+    order-list:
+        filters:
+            driver: "Select driver for order"
+            pickup: "Select order pickup location"
+            dropoff: "Select order dropoff location"
+            customer: "Select order customer"
+            vehicle: "Select vehicle for order"
+            facilitator: "Select order facilitator"
+            order-config: "Filter by order config"
+            payload-id: "Payload ID"
+            without-driver: "Without Driver Assigned"
+        empty:
+            title: "Create your first order"
+            description: "Orders are the center of Fleet-Ops: plan routes, assign drivers and vehicles, track progress, and collect proof."
+            filtered-title: "No orders match your filters"
+            filtered-description: "Adjust the search, bulk search, or filters to find another order."
+            new-order: "New order"
+            import: "Import"
+            docs-title: "Orders guide"
+            docs-text: "Order guide"
+        stale-gps: "Stale GPS"
+        fallback-eta: "Fallback ETA"
+        low-eta-confidence: "Low ETA Confidence"
+        pickup: "Pickup"
+        dropoff: "Dropoff"
+        customer: "Customer"
+        driver-assigned: "Driver Assigned"
+        no-customer: "No Customer"
+        no-phone: "No Phone"
+        no-driver: "No Driver"
+        orders-count: "{count, plural, one {# Order} other {# Orders}}"
     order-details:
         overview: "Overview"
         actions:

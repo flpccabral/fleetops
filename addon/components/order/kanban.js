@@ -51,7 +51,7 @@ export default class OrderKanbanComponent extends Component {
 
         return final.map((status, index) => ({
             id: status,
-            title: titleize(smartHumanize(status)),
+            title: this.intl.exists(`order-status.${status}`) ? this.intl.t(`order-status.${status}`) : titleize(smartHumanize(status)),
             position: index,
             cards: this.#getOrdersByStatus(status, this.orders),
         }));

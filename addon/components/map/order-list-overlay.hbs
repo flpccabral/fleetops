@@ -38,7 +38,7 @@
                             <div class="px-1">
                                 <div class="text-sm flex flex-row items-center px-3 py-0.5 rounded-md my-1">
                                     {{t "order-list-overlay.selected"}}
-                                    {{pluralize this.overlay.selectedOrders.length "Order"}}
+                                    {{t "fleet-ops.order-list.orders-count" count=this.overlay.selectedOrders.length}}
                                 </div>
                             </div>
                             <div class="next-dd-menu-seperator"></div>

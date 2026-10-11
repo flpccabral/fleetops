@@ -21,23 +21,23 @@
             />
             {{#if @card.tracker_data.insights.is_location_stale}}
                 <div class="flex mt-1">
-                    <Badge @status="warning" @hideStatusDot={{true}}>Stale GPS</Badge>
+                    <Badge @status="warning" @hideStatusDot={{true}}>{{t "fleet-ops.order-list.stale-gps"}}</Badge>
                 </div>
             {{else if @card.tracker_data.fallback_provider}}
                 <div class="flex mt-1">
-                    <Badge @status="warning" @hideStatusDot={{true}}>Fallback ETA</Badge>
+                    <Badge @status="warning" @hideStatusDot={{true}}>{{t "fleet-ops.order-list.fallback-eta"}}</Badge>
                 </div>
             {{else if @card.tracker_data.confidence}}
                 {{#unless (eq @card.tracker_data.confidence "high")}}
                     <div class="flex mt-1">
-                        <Badge @status="warning" @hideStatusDot={{true}}>Low ETA Confidence</Badge>
+                        <Badge @status="warning" @hideStatusDot={{true}}>{{t "fleet-ops.order-list.low-eta-confidence"}}</Badge>
                     </div>
                 {{/unless}}
             {{/if}}
         </div>
         <div class="order-listing-row-body flex flex-row">
             <div class="flex-1 order-listing-row-body-address start">
-                <div class="font-semibold text-sm">Pickup</div>
+                <div class="font-semibold text-sm">{{t "fleet-ops.order-list.pickup"}}</div>
                 <div class="address-text text-xs">
                     {{#if @card.payload.isMultiDrop}}
                         {{@card.payload.firstWaypoint.address}}
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="flex-1 order-listing-row-body-address end">
-                <div class="font-semibold text-sm">Dropoff</div>
+                <div class="font-semibold text-sm">{{t "fleet-ops.order-list.dropoff"}}</div>
                 <div class="address-text text-xs">
                     {{#if @card.payload.isMultiDrop}}
                         {{@card.payload.lastWaypoint.address}}
@@ -71,9 +71,9 @@
                         />
                     </div>
                     <div class="resource-assigned-details">
-                        <div class="font-semibold text-xs">Customer</div>
-                        <div class="text-xs">{{n-a @card.customer.name "No Customer"}}</div>
-                        <div class="text-xs">{{n-a @card.customer.phone "No Phone"}}</div>
+                        <div class="font-semibold text-xs">{{t "fleet-ops.order-list.customer"}}</div>
+                        <div class="text-xs">{{n-a @card.customer.name (t "fleet-ops.order-list.no-customer")}}</div>
+                        <div class="text-xs">{{n-a @card.customer.phone (t "fleet-ops.order-list.no-phone")}}</div>
                     </div>
                 </div>
             </div>
@@ -89,9 +89,9 @@
                         <FaIcon @icon="circle" @size="2xs" class="absolute left-0 top-0 h-2 w-2 -ml-1 -mt-1 {{if @card.driver_assigned.online 'text-green-500' 'text-yellow-200'}}" />
                     </div>
                     <div class="resource-assigned-details">
-                        <div class="font-semibold text-xs">Driver Assigned</div>
-                        <div class="text-xs">{{n-a @card.driver_assigned.name "No Driver"}}</div>
-                        <div class="text-xs">{{n-a @card.driver_assigned.phone "No Phone"}}</div>
+                        <div class="font-semibold text-xs">{{t "fleet-ops.order-list.driver-assigned"}}</div>
+                        <div class="text-xs">{{n-a @card.driver_assigned.name (t "fleet-ops.order-list.no-driver")}}</div>
+                        <div class="text-xs">{{n-a @card.driver_assigned.phone (t "fleet-ops.order-list.no-phone")}}</div>
                     </div>
                 </div>
             </div>

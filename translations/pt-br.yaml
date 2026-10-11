@@ -1,5 +1,36 @@
 fleet-ops:
   extension-name: Fleet-Ops
+  order-list:
+    filters:
+      driver: "Selecione o motorista do pedido"
+      pickup: "Selecione o local de coleta do pedido"
+      dropoff: "Selecione o local de entrega do pedido"
+      customer: "Selecione o cliente do pedido"
+      vehicle: "Selecione o veículo do pedido"
+      facilitator: "Selecione o facilitador do pedido"
+      order-config: "Filtrar por configuração de pedido"
+      payload-id: "ID da carga"
+      without-driver: "Sem motorista atribuído"
+    empty:
+      title: "Crie seu primeiro pedido"
+      description: "Os pedidos são o centro do Fleet-Ops: planeje rotas, atribua motoristas e veículos, acompanhe o andamento e colete comprovantes."
+      filtered-title: "Nenhum pedido corresponde aos seus filtros"
+      filtered-description: "Ajuste a pesquisa, a pesquisa em massa ou os filtros para encontrar outro pedido."
+      new-order: "Novo pedido"
+      import: "Importar"
+      docs-title: "Guia de pedidos"
+      docs-text: "Guia de pedidos"
+    stale-gps: "GPS desatualizado"
+    fallback-eta: "ETA alternativo"
+    low-eta-confidence: "Baixa confiança no ETA"
+    pickup: "Coleta"
+    dropoff: "Entrega"
+    customer: "Cliente"
+    driver-assigned: "Motorista atribuído"
+    no-customer: "Nenhum cliente"
+    no-phone: "Nenhum telefone"
+    no-driver: "Nenhum motorista"
+    orders-count: "{count, plural, one {# pedido} other {# pedidos}}"
   order-details:
     overview: "Visão geral"
     actions:

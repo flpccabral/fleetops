@@ -50,19 +50,19 @@
         @emptyStateComponent={{component
             "table/empty-state"
             icon="paper-plane"
-            title="Create your first order"
-            description="Orders are the center of Fleet-Ops: plan routes, assign drivers and vehicles, track progress, and collect proof."
-            filteredTitle="No orders match your filters"
-            filteredDescription="Adjust the search, bulk search, or filters to find another order."
-            primaryText="New order"
+            title=(t "fleet-ops.order-list.empty.title")
+            description=(t "fleet-ops.order-list.empty.description")
+            filteredTitle=(t "fleet-ops.order-list.empty.filtered-title")
+            filteredDescription=(t "fleet-ops.order-list.empty.filtered-description")
+            primaryText=(t "fleet-ops.order-list.empty.new-order")
             primaryIcon="plus"
             primaryAction=this.orderActions.transition.create
-            secondaryText="Import"
+            secondaryText=(t "fleet-ops.order-list.empty.import")
             secondaryIcon="upload"
             secondaryAction=this.importOrders
             docsSlug="fleet-ops/operations/orders/overview"
-            docsTitle="Orders guide"
-            docsText="Order guide"
+            docsTitle=(t "fleet-ops.order-list.empty.docs-title")
+            docsText=(t "fleet-ops.order-list.empty.docs-text")
             docsSource="fleet-ops-empty-orders"
         }}
         @tfootVerticalOffset="7"

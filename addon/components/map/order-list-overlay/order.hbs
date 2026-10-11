@@ -33,23 +33,23 @@
                 />
                 {{#if @order.tracker_data.insights.is_location_stale}}
                     <div class="flex mt-1">
-                        <Badge @status="warning" @hideStatusDot={{true}}>Stale GPS</Badge>
+                        <Badge @status="warning" @hideStatusDot={{true}}>{{t "fleet-ops.order-list.stale-gps"}}</Badge>
                     </div>
                 {{else if @order.tracker_data.fallback_provider}}
                     <div class="flex mt-1">
-                        <Badge @status="warning" @hideStatusDot={{true}}>Fallback ETA</Badge>
+                        <Badge @status="warning" @hideStatusDot={{true}}>{{t "fleet-ops.order-list.fallback-eta"}}</Badge>
                     </div>
                 {{else if @order.tracker_data.confidence}}
                     {{#unless (eq @order.tracker_data.confidence "high")}}
                         <div class="flex mt-1">
-                            <Badge @status="warning" @hideStatusDot={{true}}>Low ETA Confidence</Badge>
+                            <Badge @status="warning" @hideStatusDot={{true}}>{{t "fleet-ops.order-list.low-eta-confidence"}}</Badge>
                         </div>
                     {{/unless}}
                 {{/if}}
             </div>
             <div class="order-listing-row-body">
                 <div class="order-listing-row-body-address start">
-                    <div class="font-semibold">Pickup</div>
+                    <div class="font-semibold">{{t "fleet-ops.order-list.pickup"}}</div>
                     <div class="address-text">
                         {{#if @order.payload.isMultiDrop}}
                             {{@order.payload.firstWaypoint.address}}
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="order-listing-row-body-address end">
-                    <div class="font-semibold">Dropoff</div>
+                    <div class="font-semibold">{{t "fleet-ops.order-list.dropoff"}}</div>
                     <div class="address-text">
                         {{#if @order.payload.isMultiDrop}}
                             {{@order.payload.lastWaypoint.address}}
@@ -84,9 +84,9 @@
                                 />
                             </div>
                             <div class="resource-assigned-details">
-                                <div class="font-semibold">Customer</div>
-                                <div>{{n-a @order.customer.name "No Customer"}}</div>
-                                <div>{{n-a @order.customer.phone "No Phone"}}</div>
+                                <div class="font-semibold">{{t "fleet-ops.order-list.customer"}}</div>
+                                <div>{{n-a @order.customer.name (t "fleet-ops.order-list.no-customer")}}</div>
+                                <div>{{n-a @order.customer.phone (t "fleet-ops.order-list.no-phone")}}</div>
                             </div>
                         </div>
                     </div>
@@ -108,9 +108,9 @@
                                 />
                             </div>
                             <div class="resource-assigned-details">
-                                <div class="font-semibold">Driver Assigned</div>
-                                <div>{{n-a @order.driver_assigned.name "No Driver"}}</div>
-                                <div>{{n-a @order.driver_assigned.phone "No Phone"}}</div>
+                                <div class="font-semibold">{{t "fleet-ops.order-list.driver-assigned"}}</div>
+                                <div>{{n-a @order.driver_assigned.name (t "fleet-ops.order-list.no-driver")}}</div>
+                                <div>{{n-a @order.driver_assigned.phone (t "fleet-ops.order-list.no-phone")}}</div>
                             </div>
                         </div>
                     </div>
