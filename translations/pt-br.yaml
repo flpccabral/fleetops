@@ -302,6 +302,25 @@ fleet-ops:
       map: Mapa
       navigator-app: Aplicativo Navigator
       telematics: Telemática
+  operations:
+    orders:
+      index:
+        new:
+          edit-item: "Editar Item"
+          route-error: "Falha na otimização da rota, verifique a entrada da rota e tente novamente."
+          import-success: "Importação concluída."
+          no-route-warning: "Nenhuma rota para visualizar."
+          warning-message: "Nenhum arquivo na fila para enviar!"
+        bulk-assign-driver-helptext: "O motorista selecionado será atribuído a todos os pedidos selecionados."
+        view:
+          invalid-warning: "Status personalizado inválido."
+          update-success: "Os detalhes do pedido {orderId} foram atualizados."
+    order-config:
+      route-loading-message: "Carregando o configurador de pedidos..."
+  management:
+    places:
+      index:
+        title: "Atribuir este local a um fornecedor"
 common:
   last-modified: Última modificação
   online: Online
@@ -364,6 +383,35 @@ common:
   current-job: Current Job
   "yes": Sim
   "no": Não
+  active-manpower: "Mão de Obra Ativa"
+  building: "Prédio"
+  distance: "Distância"
+  driver: "Motorista"
+  driver-license: "Carteira de Motorista"
+  host: "Host"
+  key: "Chave"
+  namespace: "Namespace"
+  neighborhood: "Bairro"
+  odometer: "Odômetro"
+  photos: "Fotos"
+  plate-number: "Número da Placa"
+  priority: "Prioridade"
+  reporter: "Relator"
+  sandbox: "Sandbox"
+  security-access-code: "Código de Acesso de Segurança"
+  service-area: "Área de Serviço"
+  task: "Tarefa"
+  vehicle: "Veículo"
+  vendor: "Fornecedor"
+  vin-number: "Número VIN"
+  website: "Site"
+  website-url: "URL do Site"
+  zone: "Zona"
+  state: "Estado"
+  cost: "Custo"
+  street: "Rua"
+  invalid-resource: "Recurso inválido."
+  unauthorized-to: "Sem permissão para"
 menu:
   operations: Operações
   dashboard: Painel
@@ -515,6 +563,7 @@ resource:
   work-orders: Ordens de Serviço
   zone: Zona
   zones: Zonas
+  Driver: "Motorista"
 order-status:
   created: Criado
   ready: Pronto
@@ -1156,6 +1205,10 @@ order:
     service-quote-info: Selecione uma cotação de serviço em tempo real para aplicar a
       este pedido. Depois de aplicada ao pedido, a cotação se torna uma tarifa contratada.
       As transações serão registradas no ledger do Fleetbase.
+    id-text: "Use este campo para definir opcionalmente um identificador personalizado ou identificador interno para o pedido."
+    infoblock-text: " não atende este local."
+    service-type-help-text: "Selecione o tipo de serviço oferecido por "
+    order-details-title: " - Detalhes do pedido"
   prompts:
     update-details-success: Detalhes do pedido {orderId} foram atualizados.
     route-error: Falha na otimização da rota, verifique a entrada da rota e tente
@@ -1223,6 +1276,17 @@ order:
   kanban:
     status-updated: Atividade do pedido atualizada para o status {status}.
     cannot-update-status: Não foi possível mover o pedido para o status {status}.
+  header:
+    cancel-order: "Cancelar Pedido"
+    edit: "Editar"
+    update: "Atualizar"
+    dispatched: "Despachado"
+    assign: "Atribuir motorista"
+    get-order: "Obter etiqueta do pedido"
+    dispatched-at: "Despachado em "
+  place-card:
+    show-less: "Mostrar menos"
+    show-more: "Mostrar mais"
 order-config-manager:
   title: Configuração de Pedidos
   message: As configurações de pedido permitem que você defina configurações dinâmicas
@@ -1542,6 +1606,8 @@ vendor:
     vendor-details: Detalhes do Fornecedor
     website-help-text: O site do fornecedor, opcionalmente adicione o site do fornecedor
       para referência.
+  prompts:
+    vendor-assigned-success: "Fornecedor designou {placeName} como nova localização do fornecedor."
 integrated-vendor:
   fields:
     provider: Provedor
@@ -1892,6 +1958,7 @@ scheduler:
   auto-adjust: Ajustar Horário Automaticamente
   assign-anyway: Atribuir Mesmo Assim
   clear-selection: Limpar seleção
+  bulk-assign-start-time: "Horário de início"
 modals:
   new-custom-field-group:
     modal-title: Criar um novo grupo de campos personalizados
@@ -2245,6 +2312,8 @@ modals:
     customize-fill-color: Personalize a cor de preenchimento para esta zona.
     optionally: Opcionalmente dê uma descrição para a zona.
     description-zone: Descrição da Zona
+  assigned-orders:
+    help-text: "{count, plural, one {# pedido atribuído} other {# pedidos atribuídos}}"
 radar:
   title: Radar
   eyebrow: Recursos
@@ -4040,3 +4109,33 @@ trailer:
     dolly: Dolly
     specialty: Especial
     other: Outro
+fleet-driver-listing:
+  add-driver: "Adicionar motorista à frota"
+  loading-message: "Carregando motoristas da frota..."
+  search-driver: "Pesquisar motoristas na frota"
+fleet-vehicle-listing:
+  add-vehicle: "Adicionar veículo à frota"
+  loading-message: "Carregando veículo da frota..."
+  search-vehicle: "Pesquisar veículo na frota"
+fleet-panel:
+  details:
+    active-manpower: "Mão de Obra Ativa"
+  driver-listing:
+    add-driver: "Adicionar motorista à frota"
+    loading-driver: "Carregando motoristas da frota..."
+    search-driver: "Pesquisar motoristas na frota"
+  vehicle-listing:
+    add-vehicle: "Adicionar veículo à frota"
+    loading-vehicle: "Carregando veículo da frota..."
+    search-vehicle: "Pesquisar veículo na frota"
+schedule-card:
+  assign-button: "Continuar e atribuir motorista"
+  assign-driver: "Atribuir Novo Motorista?"
+  assign-text: "Você está prestes a atribuir um novo motorista ({driverName}) ao Pedido {orderId}. Clique em continuar para confirmar o motorista."
+  unassign-button: "Continuar e desvincular motorista"
+  unassign-driver: "Desvincular Motorista?"
+  unassign-text: "Você está prestes a desvincular o motorista do Pedido {orderId}. Clique em continuar para confirmar a remoção do motorista."
+sensor:
+  fields:
+    min-threshold-placeholder: "Limite mínimo"
+    max-threshold-placeholder: "Limite máximo"

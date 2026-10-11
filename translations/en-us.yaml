@@ -302,6 +302,25 @@ fleet-ops:
             map: Map
             navigator-app: Navigator App
             telematics: Telematics
+    operations:
+        orders:
+            index:
+                new:
+                    edit-item: "Edit Item"
+                    route-error: "Route optimization failed, check route entry and try again."
+                    import-success: "Import completed."
+                    no-route-warning: "No route to preview."
+                    warning-message: "No files in queue to upload!"
+                bulk-assign-driver-helptext: "The selected driver will be assigned to all selected orders."
+                view:
+                    invalid-warning: "Invalid custom status entry."
+                    update-success: "Order {orderId} details have been updated."
+        order-config:
+            route-loading-message: "Loading order configurator..."
+    management:
+        places:
+            index:
+                title: "Assign this place to a vendor"
 
 common:
     last-modified: Last modified
@@ -366,6 +385,36 @@ common:
     loading-route: Loading route...
     hover-to-load-route: Loading route preview...
     unable-to-load-route: Unable to load route preview.
+    active-manpower: "Active Manpower"
+    building: "Building"
+    current-job: "Current Job"
+    distance: "Distance"
+    driver: "Driver"
+    driver-license: "Drivers License"
+    host: "Host"
+    key: "Key"
+    namespace: "Namespace"
+    neighborhood: "Neighborhood"
+    odometer: "Odometer"
+    photos: "Photos"
+    plate-number: "Plate Number"
+    priority: "Priority"
+    reporter: "Reporter"
+    sandbox: "Sandbox"
+    security-access-code: "Security Access Code"
+    service-area: "Service Area"
+    task: "Task"
+    vehicle: "Vehicle"
+    vendor: "Vendor"
+    vin-number: "VIN Number"
+    website: "Website"
+    website-url: "Website URL"
+    zone: "Zone"
+    state: "State"
+    cost: "Cost"
+    street: "Street"
+    invalid-resource: "Invalid resource."
+    unauthorized-to: "Unauthorized to"
 
 menu:
     operations: Operations
@@ -873,6 +922,7 @@ resource:
     work-orders: Work Orders
     zone: Zone
     zones: Zones
+    Driver: "Driver"
 
 order-status:
     created: Created
@@ -1474,6 +1524,10 @@ order:
         no-service-quotes: No service quotes.
         input-order-routes: Input order route to view service quotes.
         service-quote-info: Select a real time service quote to apply to this order. Once a quote is applied to the order, it will become a purchased rate. Transactions will be tracked within the Fleetbase ledger.
+        id-text: "Use this field to optionally set a custom identifier or internal identifier for the order."
+        infoblock-text: " does not support this location."
+        service-type-help-text: "Select the service type provided by "
+        order-details-title: " Order Details"
     prompts:
         update-details-success: '{orderId} details has been updated.'
         route-error: Route optimization failed, check route entry and try again.
@@ -1535,6 +1589,17 @@ order:
     kanban:
         status-updated: Order activity updated to {status} status.
         cannot-update-status: Order unable to move to {status} status.
+    header:
+        cancel-order: "Cancel Order"
+        edit: "Edit"
+        update: "Update"
+        dispatched: "Dispatched"
+        assign: "Assign driver"
+        get-order: "Get order label"
+        dispatched-at: "Dispatched at "
+    place-card:
+        show-less: "Show Less"
+        show-more: "Show More"
 
 order-config-manager:
     title: Orders Configuration
@@ -1828,6 +1893,8 @@ vendor:
         title: Setup
         vendor-details: Vendor Details
         website-help-text: The vendor's website, optionally add the vendors website for reference.
+    prompts:
+        vendor-assigned-success: "Vendor assigned {placeName} as new vendor location."
 
 integrated-vendor:
     fields:
@@ -2148,6 +2215,7 @@ scheduler:
     auto-adjust: Auto-Adjust Time
     assign-anyway: Assign Anyway
     clear-selection: Clear selection
+    bulk-assign-start-time: "Start time"
 modals:
     new-custom-field-group:
         modal-title: Create a new custom field group
@@ -2514,6 +2582,8 @@ modals:
         customize-fill-color: Customize the fill color for this zone.
         optionally: Optionally give the zone a description.
         description-zone: Description of Zone
+    assigned-orders:
+        help-text: "{count, plural, one {# assigned order} other {# assigned orders}}"
 
 radar:
     title: Radar
@@ -3854,3 +3924,33 @@ resource-summary:
         work-order: Work order
         zone: Zone
         zones: Zones
+fleet-driver-listing:
+    add-driver: "Add driver to fleet"
+    loading-message: "Loading fleet drivers..."
+    search-driver: "Search drivers in fleet"
+fleet-vehicle-listing:
+    add-vehicle: "Add vehicle to fleet"
+    loading-message: "Loading fleet vehicle..."
+    search-vehicle: "Search vehicle in fleet"
+fleet-panel:
+    details:
+        active-manpower: "Active Manpower"
+    driver-listing:
+        add-driver: "Add driver to fleet"
+        loading-driver: "Loading fleet drivers..."
+        search-driver: "Search drivers in fleet"
+    vehicle-listing:
+        add-vehicle: "Add vehicle to fleet"
+        loading-vehicle: "Loading fleet vehicle..."
+        search-vehicle: "Search vehicle in fleet"
+schedule-card:
+    assign-button: "Continue and assign driver"
+    assign-driver: "Assign New Driver?"
+    assign-text: "You are about to assign a new driver ({driverName}) to Order {orderId}. Click continue to confirm driver."
+    unassign-button: "Continue and unassign driver"
+    unassign-driver: "Unassign Driver?"
+    unassign-text: "You are about to unassign the driver for Order {orderId}. Click continue to confirm removal of driver."
+sensor:
+    fields:
+        min-threshold-placeholder: "Minimum threshold"
+        max-threshold-placeholder: "Maximum threshold"
