@@ -1,5 +1,96 @@
 fleet-ops:
   extension-name: Fleet-Ops
+  extension:
+    description: Despacho, gestão de frota, rastreamento de motoristas e operações logísticas.
+    shortcuts:
+      radar:
+        title: Radar
+        description: Tudo o que precisa de uma decisão hoje em recursos, manutenção e escalas.
+      orders:
+        title: Pedidos
+        description: Crie, despache e acompanhe pedidos de entrega em tempo real.
+      places:
+        title: Locais
+        description: Gerencie locais salvos, endereços e pontos de interesse.
+      drivers:
+        title: Motoristas
+        description: Gerencie perfis, atribuições e localização em tempo real dos motoristas.
+      vehicles:
+        title: Veículos
+        description: Consulte e gerencie sua frota de veículos e a telemática.
+      fleets:
+        title: Frotas
+        description: Organize motoristas e veículos em frotas operacionais.
+      service-rates:
+        title: Tarifas de Serviço
+        description: Configure regras de preço e tabelas de tarifas de serviço.
+      devices:
+        title: Dispositivos
+        description: Gerencie os dispositivos de telemática conectados e os dados dos sensores.
+      reports:
+        title: Relatórios
+        description: Gere e consulte relatórios de análise operacional.
+      orchestrator:
+        title: Orquestrador
+        description: Aloque e despache pedidos de forma inteligente para os motoristas disponíveis.
+    widgets:
+      key-metrics:
+        name: Métricas do Fleet-Ops (Legado)
+        description: DESCONTINUADO — substituído pelos widgets individuais de indicadores. Será removido na próxima versão principal.
+      kpi-earnings:
+        name: Receita (30d)
+        description: Receita total dos últimos 30 dias, com tendência.
+      kpi-aov:
+        name: Ticket Médio (30d)
+        description: Receita média por pedido concluído, com tendência.
+      kpi-distance:
+        name: Distância Percorrida (30d)
+        description: Total de quilômetros entregues nos últimos 30 dias.
+      kpi-active-orders:
+        name: Pedidos Ativos
+        description: Quantidade em tempo real de pedidos em andamento.
+      kpi-drivers-online:
+        name: Motoristas Online
+        description: Quantidade em tempo real de motoristas ativos em um serviço.
+      radar:
+        name: Radar
+        description: 'O que precisa de decisão na frota agora: itens abertos, atrasados e adiados, com link para o Radar.'
+      kpi-open-issues:
+        name: Problemas Abertos
+        description: Problemas pendentes na frota (quanto menor, melhor).
+      operations-pulse:
+        name: Pulso da Operação
+        description: Visão operacional em tempo real, com variação em relação ao dia anterior.
+      live-fleet:
+        name: Mapa da Frota ao Vivo
+        description: Posições dos motoristas e rotas ativas em tempo real.
+      revenue-trend:
+        name: Tendência de Receita
+        description: Receita ao longo do tempo, com comparação entre períodos.
+      orders-by-status:
+        name: Volume de Pedidos por Status
+        description: Barras empilhadas diárias com a quantidade de pedidos por status.
+      on-time-delivery:
+        name: Entregas no Prazo
+        description: Percentual de entregas concluídas dentro do prazo do SLA.
+      top-drivers:
+        name: Melhores Motoristas
+        description: Ranking de motoristas por pedidos, % no prazo ou distância.
+      fuel-efficiency:
+        name: Custo e Eficiência de Combustível
+        description: Tendência semanal do custo de combustível e do custo por km.
+      fuel-providers:
+        name: Integrações de Combustível
+        description: Gastos por fornecedor, transações sem vínculo e saúde da sincronização.
+      issues-insights:
+        name: Análise de Problemas
+        description: Problemas abertos e resolvidos, divisão por categoria e tempo médio de resolução.
+      maintenance-overview:
+        name: Visão Geral de Manutenção
+        description: Manutenções atrasadas, agendadas e gastos no ano.
+      geofence-violations:
+        name: Violações de Geocerca
+        description: Permanências fora do padrão e pontos críticos de eventos de geocerca.
 common:
   last-modified: Última modificação
   online: Online

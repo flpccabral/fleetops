@@ -1,5 +1,96 @@
 fleet-ops:
     extension-name: Fleet-Ops
+    extension:
+        description: Dispatch, fleet management, driver tracking, and logistics operations.
+        shortcuts:
+            radar:
+                title: Radar
+                description: Everything across resources, maintenance and staffing that needs a decision today.
+            orders:
+                title: Orders
+                description: Create, dispatch, and track delivery orders in real time.
+            places:
+                title: Places
+                description: Manage saved locations, addresses, and points of interest.
+            drivers:
+                title: Drivers
+                description: Manage driver profiles, assignments, and live locations.
+            vehicles:
+                title: Vehicles
+                description: View and manage your vehicle fleet and telematics.
+            fleets:
+                title: Fleets
+                description: Organise drivers and vehicles into operational fleets.
+            service-rates:
+                title: Service Rates
+                description: Configure pricing rules and service rate cards.
+            devices:
+                title: Devices
+                description: Manage connected telematics devices and their sensor data.
+            reports:
+                title: Reports
+                description: Generate and review operational analytics reports.
+            orchestrator:
+                title: Orchestrator
+                description: Intelligently allocate and dispatch orders to available drivers.
+        widgets:
+            key-metrics:
+                name: Fleet-Ops Metrics (Legacy)
+                description: DEPRECATED — replaced by individual KPI tile widgets. Will be removed in the next major release.
+            kpi-earnings:
+                name: Earnings (30d)
+                description: Total earnings over the last 30 days with trend.
+            kpi-aov:
+                name: Avg Order Value (30d)
+                description: Average revenue per completed order with trend.
+            kpi-distance:
+                name: Distance Travelled (30d)
+                description: Total kilometres delivered over the last 30 days.
+            kpi-active-orders:
+                name: Active Orders
+                description: Live count of orders currently in flight.
+            kpi-drivers-online:
+                name: Drivers Online
+                description: Live count of drivers currently active on a job.
+            radar:
+                name: Radar
+                description: 'What needs a decision across the fleet right now: open, overdue and snoozed items, linking to Radar.'
+            kpi-open-issues:
+                name: Open Issues
+                description: Pending issues across the fleet (lower is better).
+            operations-pulse:
+                name: Operations Pulse
+                description: Live operational snapshot with day-over-day deltas.
+            live-fleet:
+                name: Live Fleet Map
+                description: Real-time driver positions and active routes.
+            revenue-trend:
+                name: Revenue Trend
+                description: Revenue over time with period comparison.
+            orders-by-status:
+                name: Order Volume by Status
+                description: Daily stacked bars of order counts by status.
+            on-time-delivery:
+                name: On-Time Delivery
+                description: Percentage of deliveries completed within the SLA window.
+            top-drivers:
+                name: Top Drivers
+                description: Driver leaderboard sortable by orders, on-time %, or distance.
+            fuel-efficiency:
+                name: Fuel Cost & Efficiency
+                description: Weekly fuel cost and cost-per-km trend.
+            fuel-providers:
+                name: Fuel Integrations
+                description: Provider spend, unmatched transactions, and sync health.
+            issues-insights:
+                name: Issues Insights
+                description: Open/resolved issues, category breakdown, and average resolution time.
+            maintenance-overview:
+                name: Maintenance Overview
+                description: Overdue, scheduled, and YTD maintenance spend.
+            geofence-violations:
+                name: Geofence Violations
+                description: Dwell-time outliers and geofence event hotspots.
 
 common:
     last-modified: Last modified
